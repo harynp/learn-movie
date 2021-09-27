@@ -6,9 +6,9 @@ import styled from '@emotion/styled';
 
 const Container = styled.div(props => ({
   margin: '0 auto',
-  maxWidth: '600px',
+  maxWidth: props.width || '500px',
   height: '100vh',
-  marginBottom: '100px',
+  marginBottom: props.marginBottom || '100px',
 }))
 
 
@@ -18,7 +18,7 @@ export const Wrapper = (props) => {
   } = props;
 
   return(
-    <Container>
+    <Container width={props.width} marginBottom={props.marginBottom}>
       { children }
     </Container>
   )
