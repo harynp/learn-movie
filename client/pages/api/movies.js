@@ -1,6 +1,6 @@
 export const API = 'http://www.omdbapi.com/?apikey=1babd332';
 
-export const getMovies = async (pages) => {
+const getMovies = async (pages) => {
   try {
     const URL = `${API}&s=marvel&page=${pages}`;
     const callAPI = await fetch(URL);
@@ -11,7 +11,7 @@ export const getMovies = async (pages) => {
   }
 }
 
-export const getDetailMovies = async (id) => {
+const getDetailMovies = async (id) => {
   try {
     const URL = `${API}&i=${id}`;
     const callAPI = await fetch(URL);
@@ -21,3 +21,5 @@ export const getDetailMovies = async (id) => {
     throw (error)
   }
 }
+
+export { getMovies, getDetailMovies }

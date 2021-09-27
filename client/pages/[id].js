@@ -3,22 +3,23 @@ import { GeneralTemplate, Wrapper } from '../src/components';
 import { useRouter } from "next/router";
 import { getDetailMovies } from './api/movies';
 import { route } from 'next/dist/server/router';
-
+import { getStaticProps } from 'next'
 
 export default function Detail(props) {
+  console.log('props', props);
   const { details } = props;
   const [detailAll, setDetailAll] = useState(details);
-  const temp = [];
-  Object.keys(detailAll).map(key => {
-    if(!typeof detailAll[key] === Array) {
-      const list = {
-        key: key,
-        value: detailAll[key]
-      };
-      temp.push(list);
-    }
-  }); 
-  const tempArr = useState(temp);
+  // const temp = [];
+  // Object.keys(detailAll).map(key => {
+  //   if(!typeof detailAll[key] === Array) {
+  //     const list = {
+  //       key: key,
+  //       value: detailAll[key]
+  //     };
+  //     temp.push(list);
+  //   }
+  // }); 
+  // const tempArr = useState(temp);
   return (
     <GeneralTemplate isHeader isFooter>
       <Wrapper marginBottom='75vh'>
@@ -69,14 +70,23 @@ export default function Detail(props) {
 }
 
 
-Detail.getInitialProps = async (router) => {
+// Detail.getServerSideProps = async (router) => {
+//   const {
+//     query: { id },
+//   } = router
+//   const details = await getDetailMovies(id);
+//   if (!details) {
+//     return {
+//       notFound: true,
+//     }
+//   } else {
+//     return details;
+//   }
+// }
+Detail.getInitialProps = async (router, context) => {
   const {
     query: { id },
   } = router
   const details = await getDetailMovies(id);
-  return {
-    details
-  }
+  return { details }
 }
-
-
