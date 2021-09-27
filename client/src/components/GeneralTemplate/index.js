@@ -10,32 +10,11 @@ export const GeneralTemplate = (props) => {
     children,
   } = props;
 
-  // const listBottomNav = [
-  //   {
-  //     id: 0,
-  //     label: 'Home',
-  //     image: '/home.svg',
-  //     link: '/'
-  //   },
-  //   {
-  //     id: 1,
-  //     label: 'Search',
-  //     image: '/search.svg',
-  //     link: '/search'
-  //   },
-  //   {
-  //     id: 2,
-  //     label: 'Favorite',
-  //     image: '/favorite.svg',
-  //     link: '/favorite'
-  //   }
-  // ];
-
   return(
-    <>
+    <div>
       {isHeader && <Header title='Movie List' />} 
       <>{children}</>
       {isFooter && <Footer />}
-    </>
+    </div>
   )
 }

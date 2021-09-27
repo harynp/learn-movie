@@ -3,7 +3,7 @@ export const API = 'http://www.omdbapi.com/?apikey=1babd332';
 export const getMovies = async (pages) => {
   try {
     console.log('pages nambah bro', pages);
-    const URL = `${API}&s=harry potter&page=${pages}`;
+    const URL = `${API}&s=marvel&page=${pages}`;
     const callAPI = await fetch(URL);
     const data = await callAPI.json();
     return data;

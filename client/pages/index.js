@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { GeneralTemplate, Wrapper, Spinner } from '../src/components';
+import { GeneralTemplate, Wrapper, Spinner, Thumbnail } from '../src/components';
 import { getMovies } from '../pages/api/movies';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MovieContext from '../store/movies';
@@ -13,11 +13,14 @@ export default function Home(props) {
   const [stateListMovies, setStateListMovies] = useState(movies && movies.Search);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPageMore] = useState(2);
+  // const [myLoader, setLoader] = useState(false);
   const getMovieMore = async () => {
     try {
       let counter = page + 1;
+      // setLoader(true);
       const getMore = await getMovies(page);
       setHasMore(getMore.Response === 'False' ? false : true);
+      console.log('stateListMovies', stateListMovies);
       if (getMore && getMore.Search) {
         setTimeout(() => setStateListMovies([...stateListMovies, ...getMore.Search]), 2000);
       }
@@ -31,20 +34,24 @@ export default function Home(props) {
     <GeneralTemplate isHeader isFooter>
       <Wrapper>
       <InfiniteScroll
+        style={{marginTop: '7vh'}}
         dataLength={stateListMovies.length}
         next={getMovieMore}
         hasMore={hasMore}
         loader={<Spinner/>}
-        endMessage={<h4>Nothing more to show</h4>}
+        endMessage={<h4>Nothing more list...</h4>}
       >
         <div>{ stateListMovies.map((list,idx)=> {
           return (
             <MovieContext.Provider value={list} key={idx}>
-              <p>{ idx }</p>
-              <div>{ list.Title }</div>
-              <div>{ list.Poster }</div>
-              <div>{ list.Type }</div>
-              <div>{ list.Year }</div>
+              <Thumbnail 
+                width={180} 
+                height={250} 
+                images={list.Poster} 
+                title={list.Title} 
+                year={list.Year}
+                type={list.Type}
+              />
             </MovieContext.Provider>
           )
         }) } </div>

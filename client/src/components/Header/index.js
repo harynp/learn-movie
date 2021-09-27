@@ -10,17 +10,19 @@ const Container = styled.div(props => ({
   justifyContent: props.center && 'center',
   padding: props.padding,
   background: props.background,
-  position: 'sticky',
-  top: 0
+  position: 'fixed',
+  top: 0,
+  width: '100%',
+  marginBottom: '2vh',
 }))
 
 
 const Header = () => {
   return(
-    <Container row center flex padding="5px" background="#ddd">
-      <Image src={Logo} alt="Julo"/>
+    <Container row center flex padding="5px" background="#000">
+      <Image src={Logo} alt="Julo" width={100} height={50}/>
       <div style={{paddingRight:'15px'}}/>
-      <Image width={100} height={20} src={XXI} alt="XX1"/>
+      <Image width={100} height={10} src={XXI} alt="XX1"/>
     </Container>
   )
 }

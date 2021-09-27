@@ -9,7 +9,7 @@ const Container = styled.div(props => ({
   flexDirection: props.row && 'row',
   justifyContent: props.center && 'center',
   padding: props.padding,
-  background: props.background,
+  background: '#eee',
   position: 'fixed',
   bottom: 0,
   width: '100%',
@@ -22,7 +22,7 @@ const Spacer = styled.div`
 const Footer = () => {
   return(
     <>
-      <Container row center flex padding="5px" background="#ddd">
+      <Container row center flex>
         <Image width="50" height="50" src={ListIcon} alt="Julo"/>
         <Spacer />
         <Image width="50" height="50" src={FavIcon} alt="Julo"/>

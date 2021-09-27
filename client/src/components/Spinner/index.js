@@ -15,8 +15,7 @@ const rotate = keyframes`
 const StyledSpinner = styled.div`
   display: flex;
   justify-content: center;
-  padding: 10px 0;
-  margin-bottom: 8vh;
+  margin-bottom: 6vh;
   & svg {
     animation: ${rotate} 1s linear infinite;
   }
