@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { GeneralTemplate, Wrapper, Spinner, Thumbnail } from '../src/components';
 import { getMovies } from './api/movies';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import MovieContext from '../store/movies';
 
 export default function Home(props) {
   const { movies } = props;
@@ -37,17 +36,16 @@ export default function Home(props) {
       >
         <div>{ stateListMovies.map((list,idx)=> {
           return (
-            <MovieContext.Provider value={list} key={idx}>
-              <Thumbnail
-                width={180} 
-                height={250}
-                images={list.Poster} 
-                title={list.Title} 
-                id={list.imdbID}
-                year={list.Year}
-                type={list.Type}
-              />
-            </MovieContext.Provider>
+            <Thumbnail
+              key={idx}
+              width={180} 
+              height={250}
+              images={list.Poster} 
+              title={list.Title} 
+              id={list.imdbID}
+              year={list.Year}
+              type={list.Type}
+            />
           )
         }) } </div>
         </InfiniteScroll>

@@ -1,13 +1,15 @@
 import '../styles/globals.css';
-import { AppWrapper } from '../helpers/context';
-
-
-function Application({ Component, pageProps }) {
-  return (
-    <AppWrapper>
-      <Component {...pageProps} />
-    </AppWrapper>
-  )
+import App from "next/app";
+import { Provider } from "../context";
+class MyApp extends App {
+  render() {
+    const { Component, pageProps } = this.props;
+    return (
+      <Provider>
+        <Component {...pageProps} />
+      </Provider>
+    );
+  }
 }
 
-export default Application
+export default MyApp;
